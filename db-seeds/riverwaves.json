@@ -1,0 +1,224 @@
+{
+  "riverwavestat-prod-overview": [
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+              "S": "eisbach"
+          },
+          "enabled": {
+              "BOOL": true
+          },
+          "displayName": {
+              "S": "Eisbach"
+          },
+          "website": {
+              "S": "https://www.igsm.info/eisbach-muenchen/"
+          },
+          "data": {
+              "M": {
+                  "water_level": {
+                      "M": {
+                          "user_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/muenchen-himmelreichbruecke-16515005"
+                          },
+                          "data_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/muenchen-himmelreichbruecke-16515005/tabelle?methode=wasserstand&setdiskr=15"
+                          },
+                          "enabled": {
+                              "BOOL": true
+                          }
+                      }
+                  },
+                  "water_temperature": {
+                      "M": {
+                          "user_url": {
+                              "S": "https://www.gkd.bayern.de/de/fluesse/wassertemperatur/kelheim/muenchen-himmelreichbruecke-16515005/messwerte"
+                          },
+                          "data_url": {
+                              "S": "https://www.gkd.bayern.de/de/fluesse/wassertemperatur/kelheim/muenchen-himmelreichbruecke-16515005/messwerte/tabelle"
+                          },
+                          "enabled": {
+                              "BOOL": true
+                          }
+                      }
+                  },
+                  "water_runoff": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                            "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/muenchen-himmelreichbruecke-16515005/abfluss"
+                          },
+                          "data_url": {
+                            "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/muenchen-himmelreichbruecke-16515005/tabelle?methode=abfluss&setdiskr=15"
+                          }
+                      }
+                  }
+              }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+              "S": "theriverwave"
+          },
+          "displayName": {
+              "S": "THE.RIVERWAVE"
+          },
+          "website": {
+              "S": "https://www.theriverwave.com/"
+          },
+          "enabled": {
+              "BOOL": true
+          },
+          "data": {
+              "M": {
+                  "water_level": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://hydro.ooe.gv.at/#/overview/Wasserstand/station/4470/Ebensee?mode=map&selected=Wasserstand"
+                          },
+                          "data_url": {
+                              "S": "https://hydro.ooe.gv.at/daten/internet/stations/OG/4470/S/week.json"
+                          }
+                      }
+                  },
+                  "water_temperature": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://hydro.ooe.gv.at/#/overview/Wasserstand/station/4470/Ebensee?mode=map&selected=Wassertemperatur"
+                          },
+                          "data_url": {
+                              "S": "https://hydro.ooe.gv.at/daten/internet/stations/OG/4470/WT/week.json"
+                          }
+                      }
+                  },
+                  "water_runoff": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": false
+                          }
+                      }
+                  }
+              }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+              "S": "almkanal"
+          },
+          "displayName": {
+              "S": "Almkanal"
+          },
+          "website": {
+              "S": ""
+          },
+          "enabled": {
+              "BOOL": true
+          },
+          "data": {
+              "M": {
+                  "water_level": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/inn/salzburg-mayburger-kai-18601505?"
+                          },
+                          "data_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/inn/salzburg-mayburger-kai-18601505/tabelle?methode=wasserstand&setdiskr=15"
+                          }
+                      }
+                  },
+                  "water_temperature": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": false
+                          }
+                      }
+                  },
+                  "water_runoff": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": false
+                          }
+                      }
+                  }
+              }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+              "S": "fuchslochwelle"
+          },
+          "enabled": {
+              "BOOL": true
+          },
+          "displayName": {
+              "S": "Nürnberger Dauerwelle"
+          },
+          "website": {
+              "S": "https://www.nuernberger-dauerwelle.com/"
+          },
+          "data": {
+              "M": {
+                  "water_level": {
+                      "M": {
+                        "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/nuernberg-lederersteg-24225000"
+                          },
+                          "data_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/nuernberg-lederersteg-24225000/tabelle?methode=wasserstand&setdiskr=15"
+                          }
+                      }
+                  },
+                  "water_temperature": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": false
+                          }
+                      }
+                  },
+                  "water_runoff": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/nuernberg-lederersteg-24225000/abfluss?"
+                          },
+                          "data_url": {
+                              "S": "https://www.hnd.bayern.de/pegel/donau_bis_kelheim/nuernberg-lederersteg-24225000/tabelle?methode=abfluss&setdiskr=15"
+                          }
+                      }
+                  }
+              }
+          }
+        }
+      }
+    }
+  ]
+}

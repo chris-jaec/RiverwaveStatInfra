@@ -1,0 +1,1 @@
+aws dynamodb batch-write-item --request-items file://db-seeds/riverwaves.json

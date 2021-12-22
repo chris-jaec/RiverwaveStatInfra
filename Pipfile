@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 boto3 = "*"
 beautifulsoup4 = "*"
+bs4 = "*"
+pytz = "*"
 
 [dev-packages]
 
