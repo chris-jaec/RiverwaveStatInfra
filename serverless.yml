@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: python3.8
   region: eu-central-1
-  stage: prod
+  stage: dev
   environment:
     DYNAMODB_TABLE_PREFIX: ${self:service}-${opt:stage, self:provider.stage}
     STAGE: ${opt:stage, self:provider.stage}
@@ -126,24 +126,6 @@ resources:
           Enabled: true
         TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-eisbach-water-runoff
 
-    RiverStatDynamoDbTableAlmkanalWaterLevel:
-      Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Delete
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: timestamp
-            AttributeType: N
-        KeySchema:
-          - AttributeName: timestamp
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TimeToLiveSpecification:
-          AttributeName: TTL
-          Enabled: true
-        TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-almkanal-water-level
-
     RiverStatDynamoDbTableTheRiverwaveWaterLevel:
       Type: 'AWS::DynamoDB::Table'
       DeletionPolicy: Delete
@@ -216,4 +198,110 @@ resources:
           Enabled: true
         TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-fuchslochwelle-water-runoff
 
+    RiverStatDynamoDbTableThunWaterLevel:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: timestamp
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: TTL
+          Enabled: true
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-thun-water-level
 
+    RiverStatDynamoDbTableThunWaterTemperature:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: timestamp
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: TTL
+          Enabled: true
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-thun-water-temperature
+
+    RiverStatDynamoDbTableThunWaterRunoff:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: timestamp
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: TTL
+          Enabled: true
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-thun-water-runoff
+
+    RiverStatDynamoDbTableBremgartenWaterLevel:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: timestamp
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: TTL
+          Enabled: true
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-bremgarten-water-level
+
+    RiverStatDynamoDbTableBremgartenWaterTemperature:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: timestamp
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: TTL
+          Enabled: true
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-bremgarten-water-temperature
+
+    RiverStatDynamoDbTableBremgartenWaterRunoff:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Delete
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: timestamp
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: TTL
+          Enabled: true
+        TableName: ${self:provider.environment.DYNAMODB_TABLE_PREFIX}-bremgarten-water-runoff

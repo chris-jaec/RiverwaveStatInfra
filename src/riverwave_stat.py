@@ -1,9 +1,11 @@
 import json
+import os
 from urllib.request import urlopen
 
 import boto3
 from boto3.dynamodb.conditions import Attr
 from bs4 import BeautifulSoup
+import csv
 
 from src.utilfuncs import (
     get_db_time_str_from_datetime_obj,
@@ -11,6 +13,7 @@ from src.utilfuncs import (
     get_timestamp_from_db_time_str,
     get_time_difference,
     transform_theriverwave_time,
+    transform_swiss_time,
     tranform_values,
     time_now
 )
@@ -162,39 +165,6 @@ class EisbachStatDb(RiverwaveStatDb):
         return data
 
 
-class AlmkanalStatDb(RiverwaveStatDb):
-
-    def __init__(self, region='eu-central-1', stage='dev'):
-        super().__init__(riverwave_name="almkanal", region=region, stage=stage)
-
-    def get_data_water_level(self, time_interval=DEF_TIME_INTERVAL):
-        url_water_lvl = "https://www.hnd.bayern.de/pegel/inn/salzburg-mayburger-kai-18601505/tabelle?methode=wasserstand&setdiskr=15"
-        water_lvl_data = self.get_almkanal_data(url_water_lvl, time_interval)
-        return water_lvl_data
-
-    def get_almkanal_data(self, url, time_interval):
-        page = urlopen(url)
-        html_bytes = page.read()
-        html = html_bytes.decode("utf-8")
-        soup = BeautifulSoup(html, "html.parser")
-        almkanal_data_arr = soup.find_all("tr", class_="row")
-
-        data = {}
-        for almkanal_data in almkanal_data_arr:
-            almkanal_data = almkanal_data.find_all("td")
-            time = almkanal_data[0].get_text()
-            value = almkanal_data[1].get_text()
-            value = tranform_values(value)
-
-            time_parsed = get_datetime_obj_from_db_time_str(time)
-
-            if (get_time_difference(TIME_NOW, time_parsed) <
-                    time_interval):
-                data[time] = value
-
-        return data
-
-
 class TheRiverwaveStatDb(RiverwaveStatDb):
 
     def __init__(self, region='eu-central-1', stage='dev'):
@@ -272,4 +242,111 @@ class FuchslochwelleStatDb(RiverwaveStatDb):
                     time_interval):
                 data[time] = value
 
+        return data
+
+class ThunStatDb(RiverwaveStatDb):
+
+    def __init__(self, region='eu-central-1', stage='dev'):
+        super().__init__(riverwave_name="thun", region=region, stage=stage)
+
+    def get_data_water_level(self, time_interval=DEF_TIME_INTERVAL):
+        url_water_lvl = "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2030_PegelRadar.csv"
+        water_lvl_data = self.get_thun_data(url_water_lvl, time_interval)
+        return water_lvl_data
+
+    def get_data_water_temperature(self, time_interval=DEF_TIME_INTERVAL):
+        url_water_temperature = "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2030_Wassertemperatur.csv"
+        water_temperature_data = self.get_thun_data(url_water_temperature, time_interval)
+        return water_temperature_data
+
+    def get_data_water_runoff(self, time_interval=DEF_TIME_INTERVAL):
+        url_water_runoff = "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2030_AbflussRadar.csv"
+        water_runoff_data = self.get_thun_data(url_water_runoff, time_interval)
+        return water_runoff_data
+
+    def get_thun_data(self, url, time_interval):
+
+        page = urlopen(url)
+        html_bytes = page.read()
+        html = html_bytes.decode("utf-8")
+        soup = BeautifulSoup(html, "html.parser")
+        body = soup.get_text()
+        data = {}
+
+        csv_file = open("/tmp/data.csv", "w")
+        csv_file.write(body)
+        csv_file.close()
+
+        with open('/tmp/data.csv', 'r') as csv_file:
+
+            reader = csv.reader(csv_file)
+            next(reader)
+
+            for row in reader:
+
+                time_parsed = transform_swiss_time(row[0])
+                time = get_db_time_str_from_datetime_obj(time_parsed)
+
+                value = round(float(row[1]), 1)
+                value = tranform_values(value)
+
+                if (get_time_difference(TIME_NOW, time_parsed) <
+                        time_interval):
+                    data[time] = value
+
+        os.remove("/tmp/data.csv")
+        return data
+
+
+class BremgartenStatDb(RiverwaveStatDb):
+
+    def __init__(self, region='eu-central-1', stage='dev'):
+        super().__init__(riverwave_name="bremgarten", region=region, stage=stage)
+
+    def get_data_water_level(self, time_interval=DEF_TIME_INTERVAL):
+        url_water_lvl = "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2018_PegelPneumatik.csv"
+        water_lvl_data = self.get_bremgarten_data(url_water_lvl, time_interval)
+        return water_lvl_data
+
+    def get_data_water_temperature(self, time_interval=DEF_TIME_INTERVAL):
+        url_water_temperature = "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2018_Wassertemperatur1.csv"
+        water_temperature_data = self.get_bremgarten_data(url_water_temperature, time_interval)
+        return water_temperature_data
+
+    def get_data_water_runoff(self, time_interval=DEF_TIME_INTERVAL):
+        url_water_runoff = "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2018_AbflussPneumatik.csv"
+        water_runoff_data = self.get_bremgarten_data(url_water_runoff, time_interval)
+        return water_runoff_data
+
+    def get_bremgarten_data(self, url, time_interval):
+
+        page = urlopen(url)
+        html_bytes = page.read()
+        html = html_bytes.decode("utf-8")
+        soup = BeautifulSoup(html, "html.parser")
+        body = soup.get_text()
+        data = {}
+
+        csv_file = open("/tmp/data.csv", "w")
+        csv_file.write(body)
+        csv_file.close()
+
+        with open('/tmp/data.csv', 'r') as csv_file:
+
+            reader = csv.reader(csv_file)
+            next(reader)
+
+            for row in reader:
+
+                time_parsed = transform_swiss_time(row[0])
+                time = get_db_time_str_from_datetime_obj(time_parsed)
+
+                value = round(float(row[1]), 1)
+                value = tranform_values(value)
+
+                if (get_time_difference(TIME_NOW, time_parsed) <
+                        time_interval):
+                    data[time] = value
+
+        os.remove("/tmp/data.csv")
         return data

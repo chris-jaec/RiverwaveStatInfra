@@ -1,5 +1,5 @@
 {
-  "riverwavestat-prod-overview": [
+  "riverwavestat-dev-overview": [
     {
       "PutRequest": {
         "Item": {
@@ -57,6 +57,23 @@
                       }
                   }
               }
+          },
+          "metadata": {
+            "M": {
+              "website_style": {
+                "M" : {
+                  "gradient_from": {
+                    "S": "rgba(8, 73, 125, 0.7) 0%"
+                  },
+                  "gradient_to": {
+                    "S": "rgba(1, 69, 63, 0.7) 100%"
+                  },
+                  "text_bg": {
+                    "S": "rgba(200, 200, 200, 0.2)"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -112,55 +129,23 @@
                       }
                   }
               }
-          }
-        }
-      }
-    },
-    {
-      "PutRequest": {
-        "Item": {
-          "name": {
-              "S": "almkanal"
           },
-          "displayName": {
-              "S": "Almkanal"
-          },
-          "website": {
-              "S": ""
-          },
-          "enabled": {
-              "BOOL": true
-          },
-          "data": {
-              "M": {
-                  "water_level": {
-                      "M": {
-                          "enabled": {
-                              "BOOL": true
-                          },
-                          "user_url": {
-                              "S": "https://www.hnd.bayern.de/pegel/inn/salzburg-mayburger-kai-18601505?"
-                          },
-                          "data_url": {
-                              "S": "https://www.hnd.bayern.de/pegel/inn/salzburg-mayburger-kai-18601505/tabelle?methode=wasserstand&setdiskr=15"
-                          }
-                      }
+          "metadata": {
+            "M": {
+              "website_style": {
+                "M" : {
+                  "gradient_from": {
+                    "S": "rgba(0, 70, 114, 0.7) 0%"
                   },
-                  "water_temperature": {
-                      "M": {
-                          "enabled": {
-                              "BOOL": false
-                          }
-                      }
+                  "gradient_to": {
+                    "S": "rgba(121, 44, 0, 0.7) 100%"
                   },
-                  "water_runoff": {
-                      "M": {
-                          "enabled": {
-                              "BOOL": false
-                          }
-                      }
+                  "text_bg": {
+                    "S": "rgba(200, 200, 200, 0.2)"
                   }
+                }
               }
+            }
           }
         }
       }
@@ -172,7 +157,7 @@
               "S": "fuchslochwelle"
           },
           "enabled": {
-              "BOOL": true
+              "BOOL": false
           },
           "displayName": {
               "S": "Nürnberger Dauerwelle"
@@ -216,6 +201,179 @@
                       }
                   }
               }
+          },
+          "metadata": {
+            "M": {
+              "website_style": {
+                "M" : {
+                  "gradient_from": {
+                    "S": "rgba(3, 67, 51, 0.7) 0%"
+                  },
+                  "gradient_to": {
+                    "S": "rgba(101, 0, 0, 0.7) 100%"
+                  },
+                  "text_bg": {
+                    "S": "rgba(200, 200, 200, 0.2)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+              "S": "thun"
+          },
+          "enabled": {
+              "BOOL": true
+          },
+          "displayName": {
+              "S": "Thun"
+          },
+          "website": {
+              "S": "https://www.flusssurfen.ch/"
+          },
+          "data": {
+              "M": {
+                  "water_level": {
+                      "M": {
+                        "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hydrodaten.admin.ch/de/2030.html"
+                          },
+                          "data_url": {
+                              "S": "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2030_PegelRadar.csv"
+                          }
+                      }
+                  },
+                  "water_temperature": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hydrodaten.admin.ch/de/2030.html"
+                          },
+                          "data_url": {
+                              "S": "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2030_Wassertemperatur.csv"
+                          }
+                      }
+                  },
+                  "water_runoff": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hydrodaten.admin.ch/de/2030.html"
+                          },
+                          "data_url": {
+                              "S": "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2030_AbflussRadar.csv"
+                          }
+                      }
+                  }
+              }
+          },
+          "metadata": {
+            "M": {
+              "website_style": {
+                "M" : {
+                  "gradient_from": {
+                    "S": "rgba(3, 67, 51, 0.7) 0%"
+                  },
+                  "gradient_to": {
+                    "S": "rgba(101, 0, 0, 0.7) 100%"
+                  },
+                  "text_bg": {
+                    "S": "rgba(200, 200, 200, 0.2)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+              "S": "bremgarten"
+          },
+          "enabled": {
+              "BOOL": true
+          },
+          "displayName": {
+              "S": "Bremgarten"
+          },
+          "website": {
+              "S": "http://www.flusswellebremgarten.ch/"
+          },
+          "data": {
+              "M": {
+                  "water_level": {
+                      "M": {
+                        "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hydrodaten.admin.ch/de/2018.html"
+                          },
+                          "data_url": {
+                              "S": "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2018_PegelPneumatik.csv"
+                          }
+                      }
+                  },
+                  "water_temperature": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hydrodaten.admin.ch/de/2018.html"
+                          },
+                          "data_url": {
+                              "S": "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2018_Wassertemperatur1.csv"
+                          }
+                      }
+                  },
+                  "water_runoff": {
+                      "M": {
+                          "enabled": {
+                              "BOOL": true
+                          },
+                          "user_url": {
+                              "S": "https://www.hydrodaten.admin.ch/de/2018.html"
+                          },
+                          "data_url": {
+                              "S": "https://www.hydrodaten.admin.ch/lhg/az/dwh/csv/BAFU_2018_AbflussPneumatik.csvf"
+                          }
+                      }
+                  }
+              }
+          },
+          "metadata": {
+            "M": {
+              "website_style": {
+                "M" : {
+                  "gradient_from": {
+                    "S": "rgba(80, 80, 0, 0.7) 0%"
+                  },
+                  "gradient_to": {
+                    "S": "rgba(47, 0, 100, 0.7) 100%"
+                  },
+                  "text_bg": {
+                    "S": "rgba(200, 200, 200, 0.2)"
+                  }
+                }
+              }
+            }
           }
         }
       }

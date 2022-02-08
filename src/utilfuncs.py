@@ -30,6 +30,11 @@ def transform_theriverwave_time(datetime_str):
     format = "%Y-%m-%dT%H:%M:%S"
     return datetime.strptime(datetime_str, format)
 
+def transform_swiss_time(datetime_str):
+    datetime_str = datetime_str[0:-6] # Remove time zone data from String
+    format = "%Y-%m-%dT%H:%M:%S"
+    return datetime.strptime(datetime_str, format)
+
 
 def tranform_values(value):
     if not isinstance(value, str):
